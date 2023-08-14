@@ -11,7 +11,7 @@ def mult (x, y):
 def divide (x, y):
     return x / y
     
-print('welcome in the simple python calculator')
+print('\nwelcome in the simple python calculator\n')
 
 while True:
     print('press 1 for sum ')
@@ -24,7 +24,7 @@ while True:
 
 
     if operation == 9:
-        print('thank you for using our program.') 
+        print('\nthank you for using our program.') 
         break
 
     if operation in (1,2,3,4,9):
@@ -44,10 +44,10 @@ while True:
         elif operation == 4:
             result = divide (x,y)
             print('{} / {} = '.format(x,y), result) 
-        otherCalculation = input('Do you want another calculation ? y(yes) or n(no)')
+        otherCalculation = input('\nDo you want another calculation ? y(yes) or n(no)')
         if otherCalculation == 'n':
-            print('thank you for using our program.') 
+            print('\nthank you for using our program.') 
             break
     else:
-        print('please enter valid value, follow the steps, try again.\n\n')
+        print('\n\nplease enter valid value, follow the steps, try again.\n\n')
 
