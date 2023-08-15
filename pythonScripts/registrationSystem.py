@@ -1,5 +1,5 @@
-# import bcrypt
 import json
+import os 
 
 def login ():
     pass
@@ -20,21 +20,27 @@ def signup ():
         else:
             signup()
     
-    # hashPass = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
-
     userData = {
         "username": username,
         "email": email,
         "password": password
-        # "password": hashPass.decode("utf-8")
     }
+    filename = 'users.json'
+    file_exists = os.path.isfile(filename)
+
+    if file_exists:
+        with open(filename, 'r') as userFile:
+            dictObj = json.load(userFile)
+    else:
+        dictObj = []
     
-    with open('users.json', 'a') as userFile:
-        userFile.write(json.dumps(userData) + '\n')
+    dictObj.append(userData)
 
-    print("{} signup successfully".format(username))
-
-
+    with open(filename, 'w') as userFile:
+        json.dump(dictObj, userFile, 
+                        indent=4,  
+                        separators=(',',': '))
+        
 while True:
     print('\nregistration page\n')
     signup()
