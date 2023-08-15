@@ -1,10 +1,11 @@
-import bcrypt
+# import bcrypt
 import json
 
 def login ():
     pass
 
 def signup ():
+    print('\nsignup page\n')
     username = input('enter your username: ')
     email = input('enter your email: ')
     password = input('enter your new password: ')
@@ -13,22 +14,23 @@ def signup ():
     if password != confirmPassword:
         print('\npassword do not matching, please try again! \n')
         otherTry = input('\nDo you want enter password again ? y(yes) or n(no)')
-        if otherTry == 'n':
+        if otherTry.lower() == 'n':
             print('\nthank you for using our program.') 
             return
         else:
             signup()
     
-    hash_pass = bcrypt.hashpw(password , bcrypt.gensalt())
+    # hashPass = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
 
-    user_data = {
+    userData = {
         "username": username,
         "email": email,
-        "password": hash_pass
+        "password": password
+        # "password": hashPass.decode("utf-8")
     }
     
     with open('users.json', 'a') as userFile:
-        userFile.write(json.dumps(user_data) + '\n')
+        userFile.write(json.dumps(userData) + '\n')
 
     print("{} signup successfully".format(username))
 
