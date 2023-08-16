@@ -73,12 +73,13 @@ def signup ():
         
 while True:
     print('\nregistration page\n------------------------------')
-    choice = input('\n press 1 for login\n press 2 for signup \n')
+    choice = input('\n press 1 for login\n press 2 for signup\n press 9 for exit \nEnter the value: ')
     if choice == '1':
         login()
     elif choice == '2':
         signup()
+    elif choice == '9':
+        print('\nthank you for using our program.') 
+        break
     else:
         print('invaild input, please try again. ')
-
-    
