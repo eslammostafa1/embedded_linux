@@ -1,8 +1,7 @@
-# import copy
 import pyperclip
 
-# Get the data from the clipboard
+# this application used to get data from buffer and print it.
+
 pyperclip_data = pyperclip.paste()
 
-# Print the contents of the clipboard
-print("Clipboard Data:", pyperclip_data)
+print("Data:", pyperclip_data)
