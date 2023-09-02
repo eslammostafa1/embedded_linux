@@ -1,11 +1,12 @@
-# import library
 import webbrowser
 from time import ctime
 import os
 import playsound
 from gtts import gTTS
-import random
+# import random
 import speech_recognition as sr
+import PyPDF2
+import pyttsx3
 
 # Initialize recognizer class (for recognizing the speech)
 r = sr.Recognizer()
@@ -14,8 +15,7 @@ r = sr.Recognizer()
 # Reading Audio file as source
 # listening the audio file and store in audio_text variable
 def Bixby_Speak(audios):
-    tts = gTTS(text=audios, lang='ar', slow=False)
-    # tts = gTTS(text=audios, lang='en')
+    tts = gTTS(text=audios, lang='en')
     audioF = 'audio.mp3'
     tts.save(audioF)
     playsound.playsound(audioF)
@@ -31,7 +31,7 @@ def record(ask=False):
         audio = r.listen(source)
         voice_data = ''
         try:
-            voice_data = r.recognize_google(audio, language="ar")
+            voice_data = r.recognize_google(audio, language="en")
         except sr.UnknownValueError:
             Bixby_Speak("sorry i did not get that")
         except sr.RequestError:
@@ -40,34 +40,49 @@ def record(ask=False):
 
 
 def Respond(voice_data):
-    if 'الاسم' in voice_data or 'اسم' in voice_data:
-        Bixby_Speak('الزعيم معتصم وصل يا رجاله')
-        # Bixby_Speak('Moatasem Big Boss')
-    if 'الوقت' in voice_data or 'الساعه' in voice_data:
+            
+    if 'name' in voice_data or 'title' in voice_data:
+        Bixby_Speak('eslam Big Boss')
+        
+    if 'time' in voice_data or 'date' in voice_data:
         Bixby_Speak(ctime())
-    if 'بحث' in voice_data or 'البحث' in voice_data:
-        search = record('العبد الله كفاية بس جوجل حكايه')
-        # search = record('what dow want to search')
+        print(ctime())
+
+    if 'search' in voice_data or 'searching' in voice_data:
+        search = record('what do you want to search')
         url = 'https://google.com/search?q=' + search
         webbrowser.get().open(url)
-        # Bixby_Speak('Here is what i Found For' + search)
+        Bixby_Speak('Here is what i Found For' + search)
 
-        Bixby_Speak('خلصانه بشياكه' + search)
-
-    if 'المكان' in voice_data or 'فين' in voice_data:
-        location = record("ملوك الشوارع بتمسى عليك ")
-        # location = record("what is the location do want ")
+    if 'location' in voice_data or 'place' in voice_data:
+        location = record("what is the location do want ")
         url = 'https://google.nl/maps/place/' + location + '/&amp'
         webbrowser.get().open(url)
-        # Bixby_Speak('Here is what i Found For' + location)
-        Bixby_Speak('خلصانه بشياكه' + search)
+        Bixby_Speak('Here is what i Found For' + location)
+    
+    if 'doc' in voice_data or 'read' in voice_data:
+        file = record("what is the file you want me to read ")
+        try:
+            path = open(file + '.pdf', 'rb')
+            pdfReader = PyPDF2.PdfFileReader(path)
+            num = record("What is the page number?")
+            try:
+                from_page = pdfReader.getPage(int(num))
+                text = from_page.extractText()
+                speak = pyttsx3.init()
+                speak.say(text)
+                speak.runAndWait()
+            except IndexError:
+                Bixby_Speak("The page number is invalid.")
+        except FileNotFoundError:
+            Bixby_Speak("The file was not found.")
+
 
     if 'exit' in voice_data:
         exit()
-    # Bixby_Speak('How Can I help You')
 
 
-Bixby_Speak('صباح الفل')
+Bixby_Speak('Good morning How Can I help You.')
 while 1:
     voice_data = record()
     Respond(voice_data)
