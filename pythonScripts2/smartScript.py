@@ -1,9 +1,10 @@
+from datetime import datetime, timedelta
 import webbrowser
 from time import ctime
 import os
 import playsound
 from gtts import gTTS
-# import random
+import pywhatkit
 import speech_recognition as sr
 import PyPDF2
 import pyttsx3
@@ -42,7 +43,7 @@ def record(ask=False):
 def Respond(voice_data):
             
     if 'name' in voice_data or 'title' in voice_data:
-        Bixby_Speak('eslam Big Boss')
+        Bixby_Speak('eslam your are the main user ')
         
     if 'time' in voice_data or 'date' in voice_data:
         Bixby_Speak(ctime())
@@ -60,6 +61,7 @@ def Respond(voice_data):
         webbrowser.get().open(url)
         Bixby_Speak('Here is what i Found For' + location)
     
+    # this script helps in read a specific pdf by giving a number of page and copy pdf to the script folder
     if 'doc' in voice_data or 'read' in voice_data:
         file = record("what is the file you want me to read ")
         try:
@@ -77,6 +79,13 @@ def Respond(voice_data):
         except FileNotFoundError:
             Bixby_Speak("The file was not found.")
 
+    # this scripts helps in sending a message in whatsapp to anyone by using his number after 10 min 
+    if 'whats' in voice_data or 'whatsapp' in voice_data:
+        num = record("What is the number you want to send to ")  
+        data = record("what is message you want to send ")
+        now = datetime.now()
+        scheduled_time = now + timedelta(minutes=10)    
+        pywhatkit.sendwhatmsg("+20 100 245 6855",data,scheduled_time.hour, scheduled_time.minute)
 
     if 'exit' in voice_data:
         exit()
