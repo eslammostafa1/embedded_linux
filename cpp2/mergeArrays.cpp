@@ -50,7 +50,7 @@ int main() {
             std::cout << arr3[i] << " ";
         std::cout << "\n";
         
-        std::cout<< "do you want to enter anther array: " << '\n';
+        std::cout<< "do you want to enter anther array: ('y' (or) 'n')" << '\n';
         std::cin>> quiting ;
         if ( quiting == 'n')
             break;
