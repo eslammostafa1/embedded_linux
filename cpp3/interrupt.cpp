@@ -16,7 +16,7 @@ int main()
    // Register signal and signal handler
     signal(SIGINT, signal_callback_handler);
     while (++count) { 
-        std::cout << "Hello GeeksforGeeks..." << '\n'; 
+    std::cout << "program is running..." << '\n'; 
         sleep(1);
         if (count == 10) 
             raise(SIGSEGV); 
