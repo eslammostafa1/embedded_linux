@@ -8,7 +8,6 @@ int main() {
     std::cout << "Enter the start of the array: " << '\n';
     std::cin >> start;
 
-    // Make sure this is large enough to accommodate the maximum required size (10,000).
     int arr[n] ;
 
     for (int i = 0; i < n - start + 1; i++) {
@@ -19,8 +18,8 @@ int main() {
     std::cout << "the array: " << '\n';
     for (int i = 0; i <  n - start + 1; i++) {
         std::cout << arr[i] << ' ';
-
     }
+
     std::cout << '\n';
     return 0;
 }
