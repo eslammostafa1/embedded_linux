@@ -9,14 +9,15 @@ int main() {
     int length = str.length();  
     std::cout << "The length of the string is: " << length << std::endl;
 
-    int maxsize = str.max_size();  
+    double maxsize = str.max_size();  
     std::cout << "The max size of the string is: " << maxsize << std::endl;
-
+    int maxsizeint = str.max_size();  
+    std::cout << "The max size int of the string is: " << maxsizeint << std::endl;
     std::cout << "The max size of the string is: " << str.max_size() << std::endl;
 
   //strcopy
     std::string str2;
-    std::compare(str2, str)
+    // std::compare(str2, str)
     std::cout << "The copy of the str is: " << str2 << std::endl;
     return 0;
 }
