@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <iostream>
 #include<string>
 
@@ -101,5 +100,38 @@ int main() {
     std::cout << s[0] << s[1] << s[2] << '\n';
 
 
+    //find rfind
+    // std::string st = "we are find a letter. ";
+    std::string st = "eslammostafa embedded liunx engineer. ";
+    // auto val = st.find("f");
+    std::cout<< st.rfind("m", 10) << '\n';
+    if (st.find("ww") != std::string::npos){
+            std::cout<< "found" << '\n';
+    } else {
+            std::cout<< "not found" << '\n';
+    }
+
+
+    //substr
+    st.substr(13,8);
+    std::cout<< st.substr(13,8) << '\n';
+
+    //getline function
+    getline(std::cin, sd, '.');
+    std::cout<< sd << '\n';
+
+
+    // string view  and memory size 
+    // why memory size diferent ?????????
+    const char* st = "eslammostafa embedded liunx engineer. ";
+    std::string st1 = "eslammostafa embedded liunx engineer. ";
+    std::string_view st2 = "eslammostafa embedded liunx engineer. ";
+
+    std::cout<< st <<'\n';
+    std::cout<< "string char: " << sizeof(st) <<'\n';
+    std::cout<< st1 <<'\n';
+    std::cout<< "string : " << sizeof(st1) <<'\n';
+    std::cout<< st2 <<'\n';
+    std::cout<< "string_view: " << sizeof(st2) <<'\n';
 
 }
