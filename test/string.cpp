@@ -97,7 +97,7 @@ int main() {
     myAllocator.destroy(s + 2);
     std::cout << s[0] << s[1] << s[2] << '\n';
     myAllocator.deallocate(s, 3);
-    std::cout << s[0] << s[1] << s[2] << '\n';
+    // std::cout << s[0] << s[1] << s[2] << '\n';
 
 
     //find rfind
@@ -117,21 +117,22 @@ int main() {
     std::cout<< st.substr(13,8) << '\n';
 
     //getline function
-    getline(std::cin, sd, '.');
-    std::cout<< sd << '\n';
+    // getline(std::cin, sd, '.');
+    // std::cout<< sd << '\n';
 
 
     // string view  and memory size 
     // why memory size diferent ?????????
-    const char* st = "eslammostafa embedded liunx engineer. ";
+    const char* ste = "eslammostafa embedded liunx engineer. ";
     std::string st1 = "eslammostafa embedded liunx engineer. ";
     std::string_view st2 = "eslammostafa embedded liunx engineer. ";
 
-    std::cout<< st <<'\n';
+    std::cout<< ste <<'\n';
     std::cout<< "string char: " << sizeof(st) <<'\n';
     std::cout<< st1 <<'\n';
     std::cout<< "string : " << sizeof(st1) <<'\n';
     std::cout<< st2 <<'\n';
     std::cout<< "string_view: " << sizeof(st2) <<'\n';
 
+    // ya rab sahel
 }
