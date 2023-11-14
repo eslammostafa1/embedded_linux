@@ -74,7 +74,18 @@ int main() {
     std::cout<< "splice list2 : " <<' ';
     printlist(list2);
 
-    //forward_listS
+
+    /////////////////////////////////////////////
+    //forward_list
+    std::forward_list<int> flist{1,2,-3,100, 4,5};
+    flist.push_front(0);
+    printlist(flist);
+    push_back(flist,6);
+    push_back(flist,7);
+    printlist(flist);
+    // flist.sort();   
+    printlist(flist);
+
     std::forward_list<int> flist2{11,2,-3,100,44, 44,55};
     flist.merge(flist2);
     // flist.sort(); 
