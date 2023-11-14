@@ -1,5 +1,7 @@
 #include <iostream>
 #include<string>
+#include<vector>
+#include<forward_list>
 #include<list>
 #include<set>
 
@@ -9,6 +11,7 @@ void printlist(const std::list<int>& list){
         }
     std::cout<< '\n';
 }
+
 
 void push_back(std::forward_list<int>& list , int val ) {
     auto pos = begin(list);
@@ -35,13 +38,80 @@ void printdeque(const std::deque<int>& data){
 }
 
 int main() {
+    // vector
+    // the size of the of vector is double by increace the size of vector
+    // std::vector<int> Vec{1,2,3};
+    // std::cout<< Vec.capacity() << '\n';
+    // Vec.push_back(4);
+    // std::cout<< Vec.capacity() << '\n';
+    // Vec.push_back(5);
+    // std::cout<< Vec.capacity() << '\n'; 
+    // Vec.push_back(6);
+    // std::cout<< Vec.capacity() << '\n';
+    // Vec.push_back(7);
+    // std::cout<< Vec.capacity() << '\n';
+    // this shrink the size before double it 
+    std::vector<int> Vec{1,2,3};
+    std::cout<< Vec.capacity() << '\n';
+    Vec.push_back(4);
+    std::cout<< Vec.capacity() << '\n';
+    Vec.push_back(5);
+    std::cout<< Vec.capacity() << '\n'; 
+    Vec.shrink_to_fit();
+    std::cout<< Vec.capacity() << '\n'; 
+    Vec.push_back(6);
+    std::cout<< Vec.capacity() << '\n';
+    Vec.push_back(7);
+    std::cout<< Vec.capacity() << '\n';
+    Vec.push_back(8);
+    std::cout<< Vec.capacity() << '\n';
+    Vec.erase(Vec.begin());
+    std::cout<< Vec.capacity() << '\n';
+    Vec.erase(Vec.begin());
+    std::cout<< Vec.capacity() << '\n';
+    Vec.shrink_to_fit();
+    std::cout<< Vec.capacity() << '\n';
+    Vec.erase(Vec.begin());
+    std::cout<< Vec.capacity() << '\n';
+    Vec.shrink_to_fit();
+    std::cout<< Vec.capacity() << '\n';
+
+
+    // c-style for loop 
+    for (int i = 0; i < Vec.size(); i++){
+        std::cout<< Vec[i] << '\n';
+    }
+    std::cout<< '\n' << '\n';
+
+    // modern for loop 
+    // wrong output , NOT TO USE 
+    for (auto& elem: Vec){
+        std::cout<< elem << '\n';
+    }
     
+    std::cout<< '\n' << '\n';
+    
+    // best practice with using vector loop with iterator function 
+    for (std::vector<int>::iterator it = Vec.begin(); it != Vec.end(); it++){
+        std::cout<< *it << '\n';
+    }
+
+    // avoid copy the all vector when add a new value in it by using reserve 
+    // prevent unnecessary allocation of data 
+    std::vector<long> vec2;
+    vec2.reserve(50);
+    for(size_t i=1; i!=50; ++i){
+        vec2.push_back(i);
+    }
+
+
     std::list<int> list1;
     list1.push_back(1);
     list1.push_back(2);
     list1.push_back(3);
     list1.push_back(4);
     printlist(list1);
+
     
     // insert tak position , value 
     list1.insert(list1.begin(), 100);
@@ -65,7 +135,7 @@ int main() {
     
     list1.remove_if([](int n){return n <2;});
     printlist(list1);
-    
+
     std::list<int> list2{11,22,33,44,55,66};
     // list1.merge(list2);
     // std::cout<< "merge list1 : " <<' ';
@@ -103,7 +173,7 @@ int main() {
     //remove consecutive group of equivalent elements
     flist.unique();
     printlist(flist);
-    auto last = std::unique(flist.begin(), flist.end());
+    // auto last = std::unique(flist.begin(), flist.end());
     // last = std::unique(flist.begin(), flist.end());
     // flist.erase(last, flist.end());
     flist.sort();
