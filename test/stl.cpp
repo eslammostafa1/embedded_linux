@@ -1,9 +1,13 @@
+#include <algorithm>
 #include <iostream>
-#include<string>
-#include<vector>
-#include<forward_list>
-#include<list>
-#include<set>
+#include <string>
+#include <unordered_set>
+#include <vector>
+#include <forward_list>
+#include <list>
+#include <set>
+#include <deque>
+
 
 void printlist(const std::list<int>& list){
     for( const auto& el : list){
@@ -35,6 +39,20 @@ void printdeque(const std::deque<int>& data){
                       std::puts(std::to_string(n).c_str());
                   });
                   std::cout <<'\n';
+}
+
+void printunset(const std::unordered_set<int>& unset){
+    for( const auto& el : unset){
+        std::cout<< el << " , ";
+        }
+    std::cout<< '\n';
+}
+
+void printmuset(const std::multiset<int>& muset){
+    for( const auto& el : muset){
+        std::cout<< el << " , ";
+        }
+    std::cout<< '\n';
 }
 
 int main() {
@@ -183,25 +201,23 @@ int main() {
     std::cout<< "---------\n";
     printlist(flist);
 
-    // deque
 
+    // deque
     std::deque<int> deque1{1,2,3,4};
     printdeque(deque1);
     std::cout << deque1[1] <<'\n';
-    
     // there is a two ways iterator are equivalent 
-    std::deque<int>::iterator it = deque1.begin();
+    std::deque<int>::iterator itdeq = deque1.begin();
     // auto it = deque1.begin();
     it++;
     it++;
-    deque1.insert(it, 555);
+    deque1.insert(itdeq, 555);
     printdeque(deque1);
-    
     auto end = deque1.end();
     int distance = std::distance(deque1.begin(), end);
-    it = deque1.begin();
-    std::advance(it,distance/2);
-    deque1.insert(it,777);
+    itdeq = deque1.begin();
+    std::advance(itdeq,distance/2);
+    deque1.insert(itdeq,777);
     printdeque(deque1);
     
     deque1.push_back(111);
@@ -249,9 +265,46 @@ int main() {
     for(auto el: set2){
         std::cout<< el << ',';
     }
-    
-    return 0;
+    std::cout <<'\n';
 
+    //unordered_List
+    std::cout << "unordered- set :" << '\n';
+    std::unordered_set<int> unset1{1,2,3,4,5,6,7,8,9};
+    // unset1.reserve(12);
+    unset1.insert(11);
+    unset1.insert(12);
+    unset1.insert(10);
+    unset1.insert(15);
+    unset1.insert(100);
+    unset1.erase(15);
+    unset1.erase(1);
+    unset1.erase(2);
+    unset1.erase(3);
+    unset1.erase(4);
     
+    std::cout << unset1.bucket_count() << '\n';
+    std::cout << unset1.load_factor() << '\n';
+    printunset(unset1);
+    // for(int i = 0; i < unset1.bucket_count(); i++){
+    //     std::cout << unset1.bucket_size(i) << '\n';
+    // }
+    std::unordered_set<int> unset2{11,12,13,14,15,16,17,18,19};
+    unset1.merge(unset2);
+    std::cout << "unset1: ";
+    printunset(unset1);
+    std::cout << "unset2: ";
+    printunset(unset2);
+    std::cout << "max-bucket-number: " <<unset1.max_bucket_count() << '\n';
+    std::cout << "max-bucket-number: " <<unset2.max_bucket_count() << '\n';
+
+    //multiset
+    std::multiset<int> muset1{1,2,3,3,3,3,4,4,4,4,4,4};
+    std::cout << muset1.count(4) << '\n';
+    muset1.erase(4);
+    std::cout << muset1.count(4) << '\n';
+    printmuset(muset1);
+
+
+    return 0;    
 }
 
