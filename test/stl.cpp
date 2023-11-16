@@ -7,7 +7,7 @@
 #include <list>
 #include <set>
 #include <deque>
-
+#include <utility>
 
 void printlist(const std::list<int>& list){
     for( const auto& el : list){
@@ -54,6 +54,17 @@ void printmuset(const std::multiset<int>& muset){
         }
     std::cout<< '\n';
 }
+
+//map 
+struct Edge{
+    unsigned long v1;
+    unsigned long v2;
+    friend std::ostream& operator<<(std::ostream& os, const Edge& edge);
+};
+    std::ostream& operator<<(std::ostream& os, const Edge& e) {
+        os << e.v1 << "," << e.v2;
+    return os;
+    }
 
 int main() {
     // vector
@@ -303,6 +314,27 @@ int main() {
     muset1.erase(4);
     std::cout << muset1.count(4) << '\n';
     printmuset(muset1);
+
+
+    //pair
+    using student_t = std::pair<int, std::string>;
+    std::vector<student_t> students;
+    for(int i = 0; i < 5; i++){
+        std::pair<int, std::string> student(i, "eslam");
+        students.push_back(student);
+    }
+    for(auto student: students){
+        std::cout<< student.first << ',';
+        std::cout<< student.second << '\n';
+    }
+
+    //map
+    std::map<std::string, Edge> map1;
+    map1["e1"] = Edge{0,0};
+    std::cout<<map1["e1"] << '\n';
+    map1["e1"] = Edge{1,1};
+    std::cout<<map1["e1"] << '\n';
+    std::cout<<map1["e2"] << '\n';
 
 
     return 0;    
