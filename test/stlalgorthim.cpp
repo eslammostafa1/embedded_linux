@@ -31,6 +31,11 @@ int main() {
 
     std::cout<<"none_of with range: " <<std::none_of(begin(vec2)+1, begin(vec2)+6, check1) << '\n';
    
+    auto findx = find (begin(vec1), end(vec1), 3);
+    std::cout << "find : " << *findx << '\n';
+
+    auto findy = find_if (begin(vec2), end(vec2), check1);
+    std::cout << "find_if : " << *findy << '\n';
 }
 
 
