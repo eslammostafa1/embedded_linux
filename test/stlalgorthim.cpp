@@ -1,5 +1,5 @@
-// Online C++ compiler to run C++ program online
 #include <iostream>
+#include <iterator>
 #include <vector>
 #include <algorithm>
 #include <map>
@@ -14,7 +14,7 @@ auto const check2 = [](int x){ return x >= 5; };
 
 int main() {
     std::vector<int> vec1 {1,2,3,4,5,6,9,7,3,4,8 };
-    std::vector<int> vec2 {1,0,0,0,0,0,2,2,2,2,2};
+    std::vector<int> vec2 {1,0,0,0,0,0,2,3,4,2,2,2};
     std::cout<< "all_of : " << std::all_of(begin(vec1), end(vec1), check1) << '\n';
     std::cout<< "all_of : " << std::all_of(begin(vec1), end(vec1), check2) << '\n';
     
@@ -31,11 +31,21 @@ int main() {
 
     std::cout<<"none_of with range: " <<std::none_of(begin(vec2)+1, begin(vec2)+6, check1) << '\n';
    
+    //find 
     auto findx = find (begin(vec1), end(vec1), 3);
     std::cout << "find : " << *findx << '\n';
-
+    //Generic Pointer
+    std::cout<< "find address : " <<  static_cast<void*>(&(*findx)) << '\n';
+    //Specific Pointer Type
+    std::cout<< "find address : " <<  &(*findx) << '\n';
     auto findy = find_if (begin(vec2), end(vec2), check1);
     std::cout << "find_if : " << *findy << '\n';
-}
 
+    //equal comparing ranges
+    // i must give it the start positiom i want to check on 
+    std::cout << "equal ranges : " 
+            << std::equal(begin(vec1)+1, begin(vec1)+3 , begin(vec2)+6) << '\n';
+    
+    
+}
 
