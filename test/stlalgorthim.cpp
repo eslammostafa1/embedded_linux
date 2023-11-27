@@ -46,6 +46,24 @@ int main() {
     std::cout << "equal ranges : " 
             << std::equal(begin(vec1)+1, begin(vec1)+3 , begin(vec2)+6) << '\n';
     
-    
+    // lower_bound upper_bound
+    std::vector<int> vecSort{1, 2, 2, 2, 3, 4, 4, 4, 6, 7, 8, 9, 10};
+    std::cout<< binary_search(begin(vecSort), begin(vecSort)+12, 4) << '\n';
+    // Find the first element not less than 4
+    std::cout<< *(lower_bound(begin(vecSort), begin(vecSort)+12, 4)) << '\n';
+    // Find the first element greater than 4
+    std::cout<< *(upper_bound(begin(vecSort), begin(vecSort)+12, 4)) << '\n';
+
+
+    //return true if the range in available
+    std::cout<< includes(begin(vecSort), end(vecSort), begin(vec1)+1, begin(vec1)+4 ) << '\n';
+    //min and max
+    std::cout<< *(max_element(begin(vec1), end(vec1))) << '\n';
+    std::cout<< *(min_element(begin(vec1), end(vec1))) << '\n';
+
+    //for each
+    for_each(begin(vec1),end(vec1), [](auto x){ std::cout<<" " << x+10; });
+
 }
+
 
