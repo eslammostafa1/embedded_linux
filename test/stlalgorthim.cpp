@@ -1,5 +1,8 @@
+#include <functional>
 #include <iostream>
 #include <iterator>
+#include <numeric>
+#include <pstl/glue_algorithm_defs.h>
 #include <vector>
 #include <algorithm>
 #include <map>
@@ -64,6 +67,54 @@ int main() {
     //for each
     for_each(begin(vec1),end(vec1), [](auto x){ std::cout<<" " << x+10; });
 
-}
+    //size of a container distance
+    std::cout << "\nthe distance : " << std::distance(std::begin(vec1), std::end(vec1)) << '\n';
+
+    //copy
+    std::vector<int> vecCopy;
+    int size = std::distance(std::begin(vec1)+3, std::end(vec1));
+    vecCopy.resize(size);
+    std::copy(std::begin(vec1)+3,std::end(vec1),std::begin(vecCopy));
+    for (int x : vecCopy) {
+        std::cout << x << ' ' ;
+    }
+    std::cout << "\n" << '\n';
+
+
+    //transform 
+    std::vector<int> num{1,2,3,4,5,6};
+    std::vector<char> letters{'a','b','c','d','e','f'};
+    std::vector<std::string> numletter;
+    std::transform(std::begin(num),std::end(num),std::begin(letters),std::back_inserter(numletter), [](char x , int y){
+        return std::to_string(x) + std::string(1, y);
+    });
+    std::cout << "number and letter : " << '\n';
+    for (std::string& element : numletter) {
+        std::cout << element << ' ';
+    }
+    std::cout << "\n" << '\n';
+
+    //remove
+    std::vector<int> vec3{1,6,4,3,6,3,2,5,6};
+    auto ret = std::remove(std::begin(vec3), std::end(vec3), 6);
+    std::fill(ret, std::end(vec3),00);
+    for (int x  : vec3) {std::cout << x << " ";}
+    std::cout << '\n';    
+    vec3.erase(ret, std::end(vec3));
+    for (int x  : vec3) {std::cout << x << " ";}
+    std::cout << '\n';   
+
+    //numeric
+    int accu = 0; 
+    accu = std::accumulate(std::begin(vec3),std::end(vec3),0);
+    int accumu = std::accumulate(std::begin(vec3),std::end(vec3),1, std::multiplies<>{});
+    std::cout << accu << '\n';
+    std::cout << accumu << '\n';
+
+    std::iota(std::begin(vec3)+2,std::end(vec3),100);
+    for (int x  : vec3) {std::cout << x << " ";}
+    
+
+}   
 
 
