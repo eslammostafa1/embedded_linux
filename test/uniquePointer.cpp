@@ -1,18 +1,31 @@
 #include <iostream>
 #include <memory>
-class User{
+
+class UserType{
     public:
-        User(){std::cout << "user created" << '\n';}
-        ~User(){std::cout << "user destroyed" << '\n';}
+        UserType(){std::cout << "UserType created" << '\n';}
+        ~UserType(){std::cout << "UserType destroyed" << '\n';}
 
 };
 
-int main() {
-    std::unique_ptr<User> eslam = std::unique_ptr<User>(new User);
-    
-    std::unique_ptr<User[]> mai = std::unique_ptr<User[]>(new User[10]);
+// raw pointer:
+// allow error when forgetting to deallocate
+// tolerate owership
+// smart pointer solve this problems
 
-    std::unique_ptr<User[]> ali = std::make_unique<User[]>(5);
+int main() {
+    //create one unique pointer 
+    //unique pointer allow move but do not allow sharing no copies are allowed
+    std::unique_ptr<UserType> eslam = std::unique_ptr<UserType>(new UserType);
+    std::unique_ptr<UserType> joe = std::move(eslam);
+
+    //create array of  unique pointer 
+    //delete done by block scope you donot have to delete 
+    // std::unique_ptr<UserType[]> mai = std::unique_ptr<UserType[]>(new UserType[10]);
+
+    // std::unique_ptr<UserType[]> ali = std::make_unique<UserType[]>(5);
+
+     std::unique_ptr<UserType[]> pola(new UserType[3]);
 
     return 0;
 }
