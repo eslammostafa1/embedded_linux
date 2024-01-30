@@ -17,4 +17,28 @@ for i in $counter; do
     echo "$i"
 done
 
+echo "---------------------"
+
 #while 
+
+x=0
+y=6
+while [[ $x -le 6 && $y -ge 0 ]]
+do
+echo  "x=$x"
+echo "y=$y"
+((x++))
+((y--))
+done
+echo " thanks " 
+
+echo "---------------------"
+
+i=1
+until [ $i -gt 10 ]
+do
+echo $i
+((i++))
+done
+
+echo "---------------------"
