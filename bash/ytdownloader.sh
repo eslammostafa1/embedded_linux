@@ -16,12 +16,9 @@ download_video() {
     youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' -o "$output_path/%(title)s.%(ext)s" "$video_url"
 }
 
-read -p "Enter the YouTube video URL: " video_url
+read -r -p "Enter the YouTube video URL: " video_url
 
-read -p "Enter the output path (press Enter for the current directory): " output_path
+read -r -p "Enter the output path (press Enter for the current directory): " output_path
 output_path="${output_path:-.}"
 
 download_video "$video_url" "$output_path"
-
-
-
