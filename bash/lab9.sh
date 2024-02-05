@@ -5,7 +5,7 @@ if ! command -v speedtest-cli &>/dev/null; then
     exit 1
 fi
 
-speedtest=$(speedtest-cli)
+speedtest=$(speedtest)
 
 echo "Speed test Reaults: "
 echo "$speedtest"

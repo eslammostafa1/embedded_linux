@@ -13,7 +13,12 @@ download_video() {
         mkdir -p "$output_path"
     fi
 
-    youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' -o "$output_path/%(title)s.%(ext)s" "$video_url"
+
+    if     youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' -o "$output_path/%(title)s.%(ext)s" "$video_url"; then
+        echo "Download successful!"
+    else
+        echo "Error: Unable to download the video. Please check the provided URL and try again."
+    fi
 }
 
 read -r -p "Enter the YouTube video URL: " video_url
