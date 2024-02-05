@@ -4,3 +4,4 @@ clean:
 	rm main.exe
 run:
 	./main.exe
+	
