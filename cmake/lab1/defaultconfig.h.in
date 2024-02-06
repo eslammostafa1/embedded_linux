@@ -1,0 +1,8 @@
+#define PRODUCTTYPE "BMW"
+
+#define PRODUCT_YEAR "${PRODUCT_YEAR}"
+
+#define introCmake_VERSION_MAJOR @introCmake_VERSION_MAJOR
+#define introCmake_VERSION_MINOR @introCmake_VERSION_MINOR
+
+#define DEBUGINFO "${DEBUGINFO}"
